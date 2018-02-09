@@ -39,16 +39,37 @@
 		      <table class="list">
 						<thead>
 		          <tr>
-		            <th class="nostretch">No</th>
-		            <th class="nostretch">Aksi</th>
+		            <th rowspan="3" class="nostretch">No</th>
+		            <th rowspan="3" class="nostretch">Aksi</th>
 						 		<?php  if($o==2) {$icon_sort = 'fa-sort-asc'; $kode_sort = 1;}
 						 					 elseif ($o==1) {$icon_sort = 'fa-sort-desc'; $kode_sort = 2;}
 						 					 else {$icon_sort = 'fa-sort'; $kode_sort = 1;}
 						 		?>
-								<th>
-									<a href="<?php echo site_url("{$this->controller}/index/$p/$kode_sort")?>">Jenis Barang <span class="fa <?php echo $icon_sort;?> fa-sm">&nbsp;</span></a>
+						 		<th rowspan="3">
+									<a href="<?php echo site_url("{$this->controller}/index/$p/$kode_sort")?>">Tanggal Mutasi <span class="fa <?php echo $icon_sort;?> fa-sm">&nbsp;</span></a>
+								<th rowspan="3">
+									<a href="<?php echo site_url("{$this->controller}/index/$p/$kode_sort")?>">Jenis Mutasi <span class="fa <?php echo $icon_sort;?> fa-sm">&nbsp;</span></a>
+								<th rowspan="3">Keterangan</th>
 								</th>
-								<th>Keterangan</th>
+								<th colspan="5">Asal Barang</th>
+								<th colspan="3">Penghapusan</th>
+						 		<?php  if($o==4) {$icon_sort = 'fa-sort-asc'; $kode_sort = 3;}
+						 					 elseif ($o==3) {$icon_sort = 'fa-sort-desc'; $kode_sort = 4;}
+						 					 else {$icon_sort = 'fa-sort'; $kode_sort = 3;}
+						 		?>
+							<tr>
+								<th rowspan="2">Dibeli Sendiri</th>
+								<th colspan="3">Bantuan</th>
+								<th rowspan="2">Sumbangan</th>
+								<th rowspan="2">Rusak</th>
+								<th rowspan="2">Dijual</th>
+								<th rowspan="2">Disumbang</th>
+							</tr>
+							<tr>
+								<th>Pemerintah</th>
+								<th>Provinsi</th>
+								<th>Kabupaten</th>
+							</tr>
 						</thead>
 						<tbody>
 					    <?php $i = 0;
@@ -62,6 +83,13 @@
 											<a href="<?php echo site_url("{$this->controller}/delete/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash"><span></a>
 										</div>
 								  </td>
+								  <td><?php echo $data['nama']?></td>
+								  <td><?php echo $data['nama']?></td>
+								  <td><?php echo $data['nama']?></td>
+								  <td><?php echo $data['nama']?></td>
+								  <td><?php echo $data['nama']?></td>
+								  <td><?php echo $data['nama']?></td>
+								  <td><?php echo $data['nama']?></td>
 								  <td><?php echo $data['nama']?></td>
 								  <td><?php echo $data['keterangan']?></td>
 								</tr>

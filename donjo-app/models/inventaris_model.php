@@ -123,7 +123,7 @@
 		return $sql;
 	}
 
-	function list_data($o=0,$offset=0,$limit=500){
+	function list_data($id_jenis=0,$o=0,$offset=0,$limit=500){
 		$select_sql = "SELECT *
 			";
 		//Main Query
