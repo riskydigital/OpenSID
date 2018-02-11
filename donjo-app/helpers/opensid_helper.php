@@ -205,6 +205,11 @@ define("PENOLONG_KELAHIRAN", serialize(array(
       "Bidan Perawat" => "2",
       "Dukun" => "3",
       "Lainnya" => "4")));
+define("JENIS_MUTASI", serialize(array(
+      "Pengadaan" => "1",
+      "Penghapusan" => "2",
+      "Status rusak" => "3",
+      "Status diperbaiki" => "4")));
 
 /**
  * Ambil Versi

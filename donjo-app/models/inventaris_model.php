@@ -89,12 +89,17 @@
 
 // ===============
 
+	function get_inventaris($id=0){
+		$hasil = $this->db->where('id',$id)->get('inventaris')->row_array();
+		return $hasil;
+	}
+
 	function search_sql(){
 		if(isset($_SESSION['cari'])){
 			$cari = $_SESSION['cari'];
 			$kw = $this->db->escape_like_str($cari);
 			$kw = '%' .$kw. '%';
-			$search_sql= " AND (j.nama LIKE '$kw')";
+			$search_sql= " AND (i.keterangan LIKE '$kw')";
 			return $search_sql;
 		}
 	}
@@ -132,8 +137,8 @@
 
 		//Ordering SQL
 		switch($o){
-			case 1: $order_sql = ' ORDER BY i.jenis'; break;
-			case 2: $order_sql = ' ORDER BY i.jenis DESC'; break;
+			case 1: $order_sql = ' ORDER BY i.tanggal_mutasi'; break;
+			case 2: $order_sql = ' ORDER BY i.tanggal_mutasi DESC'; break;
 			default:$order_sql = '';
 		}
 

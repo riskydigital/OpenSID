@@ -13,6 +13,7 @@ class Inventaris extends CI_Controller{
 		}
 		$this->load->model('header_model');
 		$this->load->model('inventaris_model');
+		$this->load->model('referensi_model');
 		$this->modul_ini = 15;
 		$this->tab_ini = 5;
 		$this->controller = 'inventaris';
@@ -115,20 +116,23 @@ class Inventaris extends CI_Controller{
 		$this->load->view('footer');
 	}
 
-	function form($p=1,$o=0,$id=''){
+	function form($id_jenis,$p=1,$o=0,$id=''){
 
 		$data['p'] = $p;
 		$data['o'] = $o;
 
 		if($id){
-			$data['inventaris']     = $this->inventaris_model->get_inventaris($id);
-			$data['form_action'] = site_url("inventaris/update/$id/$p/$o");
+			$data['inventaris']  = $this->inventaris_model->get_inventaris($id);
+			$data['form_action'] = site_url("inventaris/update/$id_jenis/$id/$p/$o");
 		}
 		else{
 			$data['dokumen']     = null;
-			$data['form_action'] = site_url("inventaris/insert");
+			$data['form_action'] = site_url("inventaris/insert/$id_jenis");
 		}
 
+		$data['jenis_mutasi'] = $this->referensi_model->list_kode_array(JENIS_MUTASI);
+		$data['asal_inventaris'] = $this->referensi_model->list_kode_array(ASAL_INVENTARIS);
+		$data['jenis_penghapusan'] = $this->referensi_model->list_kode_array(JENIS_PENGHAPUSAN);
 		$header = $this->header_model->get_data();
 		$this->load->view('header', $header);
 		$this->load->view('sekretariat/nav',$nav);
@@ -154,12 +158,12 @@ class Inventaris extends CI_Controller{
 		redirect("dokumen_sekretariat/index/$kat");
 	}
 
-	function insert(){
+	function insert($id_jenis){
 		$this->inventaris_model->insert();
-		redirect("inventaris/index/");
+		redirect("inventaris/rincian/$id_jenis");
 	}
 
-	function update($kat,$id='',$p=1,$o=0){
+	function update($jenis,$id='',$p=1,$o=0){
 		$_SESSION['success']=1;
 		$kategori = $this->input->post('kategori');
 		if (!empty($kategori))

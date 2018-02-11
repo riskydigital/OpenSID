@@ -25,7 +25,7 @@
 					</div>
 		      <div class="left">
 		        <div class="uibutton-group">
-		          <a href='<?php echo site_url("{$this->controller}/form/$p/$o/$jenis[id]")?>' class="uibutton tipsy south" title="Tambah Data" ><span class="fa fa-plus-square">&nbsp;</span>Tambah Mutasi Inventaris</a>
+		          <a href='<?php echo site_url("{$this->controller}/form/$jenis[id]/$p/$o")?>' class="uibutton tipsy south" title="Tambah Data" ><span class="fa fa-plus-square">&nbsp;</span>Tambah Mutasi Inventaris</a>
 		        </div>
 		      </div>
 		    </div>
@@ -83,14 +83,16 @@
 											<a href="<?php echo site_url("{$this->controller}/delete/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash"><span></a>
 										</div>
 								  </td>
-								  <td><?php echo $data['nama']?></td>
-								  <td><?php echo $data['nama']?></td>
-								  <td><?php echo $data['nama']?></td>
-								  <td><?php echo $data['nama']?></td>
-								  <td><?php echo $data['nama']?></td>
-								  <td><?php echo $data['nama']?></td>
-								  <td><?php echo $data['nama']?></td>
-								  <td><?php echo $data['nama']?></td>
+								  <td><?php echo $data['tanggal_mutasi']?></td>
+								  <td><?php echo $data['jenis_mutasi']?></td>
+								  <td><?php echo $data['keterangan']?></td>
+								  <td><?php echo $data['asal_sendiri']?></td>
+								  <td><?php echo $data['asal_pemerintah']?></td>
+								  <td><?php echo $data['asal_provinsi']?></td>
+								  <td><?php echo $data['asal_kab']?></td>
+								  <td><?php echo $data['hapus_rusak']?></td>
+								  <td><?php echo $data['hapus_dijual']?></td>
+								  <td><?php echo $data['hapus_sumbangkan']?></td>
 								  <td><?php echo $data['keterangan']?></td>
 								</tr>
 					    <?php }?>
