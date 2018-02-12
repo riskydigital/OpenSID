@@ -123,7 +123,7 @@ class Inventaris extends CI_Controller{
 
 		if($id){
 			$data['inventaris']  = $this->inventaris_model->get_inventaris($id);
-			$data['form_action'] = site_url("inventaris/update/$id_jenis/$id/$p/$o");
+			$data['form_action'] = site_url("inventaris/update/$id_jenis/$p/$o/$id");
 		}
 		else{
 			$data['dokumen']     = null;
@@ -163,26 +163,14 @@ class Inventaris extends CI_Controller{
 		redirect("inventaris/rincian/$id_jenis");
 	}
 
-	function update($jenis,$id='',$p=1,$o=0){
-		$_SESSION['success']=1;
-		$kategori = $this->input->post('kategori');
-		if (!empty($kategori))
-			$kat = $this->input->post('kategori');
-		$outp = $this->web_dokumen_model->update($id);
-		if (!$outp) $_SESSION['success']=-1;
-		redirect("dokumen_sekretariat/index/$kat/$p/$o");
+	function update($id_jenis,$p=1,$o=0,$id=''){
+		$this->inventaris_model->update($id);
+		redirect("inventaris/rincian/$id_jenis/$p/$o");
 	}
 
-	function delete($kat=1,$p=1,$o=0,$id=''){
-		$_SESSION['success']=1;
-		$this->web_dokumen_model->delete($id);
-		redirect("dokumen_sekretariat/index/$kat/$p/$o");
-	}
-
-	function delete_all($kat=1,$p=1,$o=0){
-		$_SESSION['success']=1;
-		$this->web_dokumen_model->delete_all();
-		redirect("dokumen_sekretariat/index/$kat/$p/$o");
+	function delete($id_jenis,$p=1,$o=0,$id=''){
+		$this->inventaris_model->delete($id);
+		redirect("inventaris/rincian/$id_jenis/$p/$o");
 	}
 
 }

@@ -79,21 +79,21 @@
 									<td align="center" width="2"><?php echo $i+$paging->offset?></td>
 									<td>
 										<div class="uibutton-group" style="display: flex;">
-											<a href="<?php echo site_url("{$this->controller}/form/$p/$o/$data[id]")?>" class="uibutton tipsy south fa-tipis" title="Ubah Data"><span class="fa fa-edit fa-tipis"></span> Ubah</a>
-											<a href="<?php echo site_url("{$this->controller}/delete/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash"><span></a>
+											<a href="<?php echo site_url("{$this->controller}/form/$jenis[id]/$p/$o/$data[id]")?>" class="uibutton tipsy south fa-tipis" title="Ubah Data"><span class="fa fa-edit fa-tipis"></span> Ubah</a>
+											<a href="<?php echo site_url("{$this->controller}/delete/$jenis[id]/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash"><span></a>
 										</div>
 								  </td>
-								  <td><?php echo $data['tanggal_mutasi']?></td>
+								  <td><?php echo tgl_indo($data['tanggal_mutasi'])?></td>
 								  <td><?php echo $data['jenis_mutasi']?></td>
 								  <td><?php echo $data['keterangan']?></td>
 								  <td><?php echo $data['asal_sendiri']?></td>
 								  <td><?php echo $data['asal_pemerintah']?></td>
 								  <td><?php echo $data['asal_provinsi']?></td>
+								  <td><?php echo $data['asal_sumbangan']?></td>
 								  <td><?php echo $data['asal_kab']?></td>
 								  <td><?php echo $data['hapus_rusak']?></td>
 								  <td><?php echo $data['hapus_dijual']?></td>
 								  <td><?php echo $data['hapus_sumbangkan']?></td>
-								  <td><?php echo $data['keterangan']?></td>
 								</tr>
 					    <?php }?>
 						</tbody>

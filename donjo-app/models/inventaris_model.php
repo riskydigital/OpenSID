@@ -91,6 +91,7 @@
 
 	function get_inventaris($id=0){
 		$hasil = $this->db->where('id',$id)->get('inventaris')->row_array();
+		$hasil['tanggal_mutasi'] = tgl_indo_out($hasil['tanggal_mutasi']);
 		return $hasil;
 	}
 
@@ -156,19 +157,21 @@
 
 	function insert(){
 		$data = $_POST;
+		$data['tanggal_mutasi'] = tgl_indo_in($data['tanggal_mutasi']);
 		$outp = $this->db->insert('inventaris',$data);
 		if(!$outp) session_error(); else session_success();
 	}
 
 	function update($id=''){
 	  $data = $_POST;
+		$data['tanggal_mutasi'] = tgl_indo_in($data['tanggal_mutasi']);
 		$outp = $this->db->where('id',$id)->update('inventaris',$data);
 		if(!$outp) session_error(); else session_success();
 	}
 
 	function delete($id=''){
 		$outp = $this->db->where('id',$id)->delete('inventaris');
-		return $outp;
+		if(!$outp) session_error(); else session_success();
 	}
 
 	function delete_all(){
