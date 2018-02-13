@@ -1,3 +1,6 @@
+<script type="text/javascript">
+
+</script>
 <style type="text/css">
   table.form th.indent {
     padding-left: 4em;
@@ -60,27 +63,29 @@
           <th class="indent">Jumlah Bantuan Kabupaten</th>
           <td><input name="asal_kab" type="text" class="inputbox required" size="10" value="<?php echo $inventaris['asal_kab']?>"/></td>
         </tr>
-        <tr>
-          <th colspan="2">Jenis Penghapusan</th>
-        </tr>
-        <tr>
-          <th class="indent">Jumlah Rusak</th>
-          <td><input name="hapus_rusak" type="text" class="inputbox required" size="10" value="<?php echo $inventaris['hapus_rusak']?>"/></td>
-        </tr>
-        <tr>
-          <th class="indent">Jumlah Dijual</th>
-          <td><input name="hapus_dijual" type="text" class="inputbox required" size="10" value="<?php echo $inventaris['hapus_dijual']?>"/></td>
-        </tr>
-        <tr>
-          <th class="indent">Jumlah Disumbangkan</th>
-          <td><input name="hapus_sumbangkan" type="text" class="inputbox required" size="10" value="<?php echo $inventaris['hapus_sumbangkan']?>"/></td>
-        </tr>
+        <?php if($inventaris['jenis_mutasi'] == 2): ?>
+          <tr>
+            <th class="hapus" colspan="2">Jenis Penghapusan</th>
+          </tr>
+          <tr>
+            <th class="hapus indent">Jumlah Rusak</th>
+            <td><input name="hapus_rusak" type="text" class="inputbox required" size="10" value="<?php echo $inventaris['hapus_rusak']?>"/></td>
+          </tr>
+          <tr>
+            <th class="hapus indent">Jumlah Dijual</th>
+            <td><input name="hapus_dijual" type="text" class="inputbox required" size="10" value="<?php echo $inventaris['hapus_dijual']?>"/></td>
+          </tr>
+          <tr>
+            <th class="hapus indent">Jumlah Disumbangkan</th>
+            <td><input name="hapus_sumbangkan" type="text" class="inputbox required" size="10" value="<?php echo $inventaris['hapus_sumbangkan']?>"/></td>
+          </tr>
+        <?php endif; ?>
       </table>
     </div>
 
     <div class="ui-layout-south panel bottom">
       <div class="left">
-        <a href="<?php echo site_url().$this->controller.'/index/'?>" class="uibutton icon prev">Kembali</a>
+        <a href="<?php echo site_url().$this->controller.'/rincian/'.$inventaris['id_jenis_barang']?>" class="uibutton icon prev">Kembali</a>
       </div>
       <div class="right">
         <div class="uibutton-group">

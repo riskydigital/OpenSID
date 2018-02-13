@@ -77,7 +77,7 @@
 	}
 
 	function status_inventaris($id_jenis_barang){
-		$pengadaan = $this->db->select('SUM(asal_sendiri) as asal_sendiri, SUM(asal_pemerintah) as asal_pemerintah')->where('id_jenis_barang',$id_jenis_barang)->get('inventaris')->result_array();
+		$pengadaan = $this->db->select('SUM(asal_sendiri) as asal_sendiri, SUM(asal_pemerintah) as asal_pemerintah, SUM(asal_provinsi) as asal_provinsi, SUM(asal_kab) as asal_kab')->where('id_jenis_barang',$id_jenis_barang)->where('jenis_mutasi',1)->get('inventaris')->result_array();
 		return $pengadaan[0];
 	}
 
