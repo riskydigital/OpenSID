@@ -39,16 +39,31 @@
 		      <table class="list">
 						<thead>
 		          <tr>
-		            <th class="nostretch">No</th>
-		            <th class="nostretch">Aksi</th>
+		            <th rowspan="3" class="nostretch">No</th>
+		            <th rowspan="3" class="nostretch">Aksi</th>
 						 		<?php  if($o==2) {$icon_sort = 'fa-sort-asc'; $kode_sort = 1;}
 						 					 elseif ($o==1) {$icon_sort = 'fa-sort-desc'; $kode_sort = 2;}
 						 					 else {$icon_sort = 'fa-sort'; $kode_sort = 1;}
 						 		?>
-								<th>
+								<th rowspan="3">
 									<a href="<?php echo site_url("{$this->controller}/index/$p/$kode_sort")?>">Jenis Barang <span class="fa <?php echo $icon_sort;?> fa-sm">&nbsp;</span></a>
 								</th>
-								<th>Keterangan</th>
+								<th rowspan="3" >Keterangan</th>
+								<th colspan="5">Asal Barang</th>
+								<th colspan="2">Keadaan Barang</th>
+							</tr>
+							<tr>
+								<th rowspan="2">Dibeli Sendiri</th>
+								<th colspan="3">Bantuan</th>
+								<th rowspan="2">Sumbangan</th>
+								<th rowspan="2">Baik</th>
+								<th rowspan="2">Rusak</th>
+							</tr>
+							<tr>
+								<th>Pemerintah</th>
+								<th>Provinsi</th>
+								<th>Kabupaten</th>
+							</tr>
 						</thead>
 						<tbody>
 					    <?php $i = 0;
@@ -65,6 +80,13 @@
 								  </td>
 								  <td><?php echo $data['nama']?></td>
 								  <td><?php echo $data['keterangan']?></td>
+								  <td><?php echo $data['asal_sendiri']?></td>
+								  <td><?php echo $data['asal_pemerintah']?></td>
+								  <td><?php echo $data['asal_provinsi']?></td>
+								  <td><?php echo $data['asal_sumbangan']?></td>
+								  <td><?php echo $data['asal_kab']?></td>
+								  <td><?php echo $data['status_baik']?></td>
+								  <td><?php echo $data['status_rusak']?></td>
 								</tr>
 					    <?php }?>
 						</tbody>

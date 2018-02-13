@@ -66,8 +66,19 @@
 
 		$query = $this->db->query($sql);
 		$data=$query->result_array();
-
+		// Isi status setiap jenis barang yang ditampilkan
+		for($i=0; $i<count($data); $i++){
+			$status = $this->status_inventaris($data[$i]['id']);
+			foreach($status as $key => $value){
+				$data[$i][$key] = $value;
+			}
+		}
 		return $data;
+	}
+
+	function status_inventaris($id_jenis_barang){
+		$pengadaan = $this->db->select('SUM(asal_sendiri) as asal_sendiri, SUM(asal_pemerintah) as asal_pemerintah')->where('id_jenis_barang',$id_jenis_barang)->get('inventaris')->result_array();
+		return $pengadaan[0];
 	}
 
 	function insert_jenis(){
@@ -105,8 +116,8 @@
 		}
 	}
 
-	function paging($p=1,$o=0){
-		$list_data_sql = $this->list_data_sql();
+	function paging($id_jenis,$p=1,$o=0){
+		$list_data_sql = $this->list_data_sql($id_jenis);
 		$sql = "SELECT COUNT(*) AS jml ".$list_data_sql;
 		$query    = $this->db->query($sql);
 		$row      = $query->row_array();
@@ -121,10 +132,10 @@
 	}
 
 	// Digunakan untuk paging dan query utama supaya jumlah data selalu sama
-	private function list_data_sql() {
+	private function list_data_sql($id_jenis) {
 		$sql = "
 			FROM inventaris i
-			WHERE 1 ";
+			WHERE i.id_jenis_barang = $id_jenis ";
 		$sql .= $this->search_sql();
 		return $sql;
 	}
@@ -133,7 +144,7 @@
 		$select_sql = "SELECT *
 			";
 		//Main Query
-		$list_data_sql = $this->list_data_sql($log);
+		$list_data_sql = $this->list_data_sql($id_jenis);
 		$sql = $select_sql." ".$list_data_sql;
 
 		//Ordering SQL
@@ -155,8 +166,9 @@
 		return $data;
 	}
 
-	function insert(){
+	function insert($id_jenis_barang){
 		$data = $_POST;
+		$data['id_jenis_barang'] = $id_jenis_barang;
 		$data['tanggal_mutasi'] = tgl_indo_in($data['tanggal_mutasi']);
 		$outp = $this->db->insert('inventaris',$data);
 		if(!$outp) session_error(); else session_success();

@@ -105,7 +105,7 @@ class Inventaris extends CI_Controller{
 		$data['per_page'] = $_SESSION['per_page'];
 
 		$data['jenis']	 = $this->inventaris_model->get_jenis($id);
-		$data['paging']  = $this->inventaris_model->paging($p, $o);
+		$data['paging']  = $this->inventaris_model->paging($id,$p, $o);
 		$data['main']    = $this->inventaris_model->list_data($id, $o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->inventaris_model->autocomplete();
 
@@ -159,7 +159,7 @@ class Inventaris extends CI_Controller{
 	}
 
 	function insert($id_jenis){
-		$this->inventaris_model->insert();
+		$this->inventaris_model->insert($id_jenis);
 		redirect("inventaris/rincian/$id_jenis");
 	}
 
